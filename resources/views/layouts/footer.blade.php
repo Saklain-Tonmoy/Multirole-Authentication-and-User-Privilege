@@ -1,10 +1,10 @@
 <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Anything you want
+      Developed by <strong>Saklain</strong>
     </div>
     <!-- Default to the left -->
-    <strong>Copyright © 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright © 2021 <a href="https://gq-group.com">GQ Group of Companies</a>.</strong> All rights reserved.
   </footer>
 
   <div id="sidebar-overlay"></div>
