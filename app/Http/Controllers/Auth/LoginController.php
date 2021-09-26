@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -31,6 +32,22 @@ class LoginController extends Controller
 
     protected $redirectTo;
 
+
+    protected function authenticated(Request $request, $user)
+    {
+        if(Auth::check() && Auth::user()->role_id == 1) {
+            // dd('admin');
+            // return redirect('/admin/dashboard');
+            $this->redirectTo = route('admindashboard');
+        } elseif(Auth::check() && Auth::user()->role_id == 2) {
+            // return redirect('/manager/dashboard');
+            $this->redirectTo = route('managerdashboard');
+        } elseif(Auth::check() && Auth::user()->role_id == 3) {
+            // return redirect('user/dashboard');
+            $this->redirectTo = route('userdashboard');
+        }
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -40,14 +57,7 @@ class LoginController extends Controller
     {
         // $this->middleware('guest')->except('logout');
 
-        if(Auth::check() && Auth::user()->role_id == 1) {
-            dd('admin');
-            $this->redirectTo = route('dashboard');
-        } elseif(Auth::check() && Auth::user()->role_id == 2) {
-            $this->redirectTo = route('manager.dashboard');
-        } elseif(Auth::check() && Auth::user()->role_id == 3) {
-            $this->redirectTo = route('user.dashboard');
-        }
+        
 
         $this->middleware('guest')->except('logout');
     }

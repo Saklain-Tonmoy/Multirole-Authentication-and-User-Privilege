@@ -30,6 +30,12 @@ Route::get('/forgot-password', function() {
 })->middleware('guest')->name('password.request');
 
 
+// Route::group(['middleware' => 'auth'], function() {
+//     Route::group(['as' => 'admin', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => [AdminMiddleware::class]], function() {
+//         Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+//     });
+// });
+
 Route::group(['as' => 'admin', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => [AdminMiddleware::class]], function() {
     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 });
