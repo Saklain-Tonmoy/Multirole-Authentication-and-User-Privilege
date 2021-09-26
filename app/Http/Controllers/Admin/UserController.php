@@ -13,8 +13,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::all();
-        return $user;
+        $users = User::all();
+        return view('admin.pages.user-list', compact('users'));
     }
 
     public function create()
@@ -37,10 +37,10 @@ class UserController extends Controller
         $status = false;
 
         try{
+
             $user = User::create($request->all());
             $user->password = Hash::make($request->password);
             $status = $user->save();
-
 
         } catch(Exception $e) {
             return back()->with('exception', $e->getMessage());
@@ -48,8 +48,27 @@ class UserController extends Controller
 
         if($status) {
             return redirect()->route('adminsoftware.users')->with('success', 'Successfully created User.');
-        } else {
+        }
+        else {
             return back()->with('error', 'Something went wrong! Please try again.');
+        }
+    }
+
+    public function destroy($id)
+    {
+        $user = User::findorfail($id);
+
+        if($user) {
+            $status = $user->delete();
+            if($status) {
+                return redirect()->route('adminindex.users')->with('success', 'Successfully deleted user.');
+            }
+            else {
+                return back()->with('error', 'Data not found');
+            }
+        }
+        else {
+            return back()->with('error', 'Data not found.');
         }
     }
 }
