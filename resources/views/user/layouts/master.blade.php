@@ -10,12 +10,14 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}"/>
 </head>
 <body class="sidebar-mini">
-    @include('layouts.navbar')
+    <div class="wrapper">
+        @include('user.layouts.navbar')
+        @include('user.layouts.sidebar')
 
-    @yield('content')
+        @yield('content')
 
-    @include('layouts.footer')
-
+        @include('user.layouts.footer')
+    </div>
     <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>
