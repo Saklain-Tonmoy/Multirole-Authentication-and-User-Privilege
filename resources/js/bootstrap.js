@@ -11,7 +11,12 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
-    require('admin-lte');
+    require('admin-lte/plugins/jquery/jquery');
+    require('admin-lte/plugins/bootstrap/js/bootstrap.bundle');
+    require('admin-lte/plugins/datatables/jquery.dataTables');
+    require('admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4');
+    require('admin-lte/dist/js/adminlte');
+    require('admin-lte/dist/js/demo');
 } catch (e) {}
 
 /**

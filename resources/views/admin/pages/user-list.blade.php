@@ -1,5 +1,13 @@
 @extends('admin.layouts.master')
 
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('#example1').DataTable();
+});
+</script>
+@endpush
+
 @section('content')
 <div class="content-wrapper" style="min-height: 267px;">
     <!-- Content Header (Page header) -->
@@ -25,12 +33,15 @@
                     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_length" id="example1_length"><label>Show <select name="example1_length" aria-controls="example1" class="custom-select custom-select-sm form-control form-control-sm">
+                                <div class="dataTables_length" id="example1_length">
+                                    <label>Show 
+                                        <select name="example1_length" aria-controls="example1" class="custom-select custom-select-sm form-control form-control-sm">
                                             <option value="10">10</option>
                                             <option value="25">25</option>
                                             <option value="50">50</option>
                                             <option value="100">100</option>
-                                        </select> entries</label></div>
+                                        </select> entries
+                                    </label></div>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div id="example1_filter" class="dataTables_filter float-right"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="example1"></label></div>
@@ -41,20 +52,13 @@
                                 <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 169.344px;">Name</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 219.531px;">Email</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 194.219px;">Role</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 194.219px;">Action</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 169.344px;">Name</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 219.531px;">Email</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="width: 194.219px;">Role</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 194.219px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- <tr role="row" class="odd">
-<td class="sorting_1">Gecko</td>
-<td>Firefox 1.0</td>
-<td>Win 98+ / OSX.2+</td>
-<td>1.7</td>
-<td>A</td>
-</tr> -->
                                         @foreach($users as $user)
                                         <tr role="row">
                                             <td class="d-none">{{$user->id}}</td>
@@ -66,7 +70,7 @@
                                                 <form class="float-left" action="{{route('admindelete.user', $user->id)}}" method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <a href="" class="dltBtn m-2 btn btn-sm btn-outline-danger" data-toggle="tooltip" data-id="{{$user->id}}" title="delete" data-placement="bottom"><i class="fas fa-trash-alt"></i></a>
+                                                    <button href="{{route('admindelete.user', $user->id)}}" class="dltBtn m-2 btn btn-sm btn-outline-danger" data-toggle="tooltip" data-id="{{$user->id}}" title="delete" data-placement="bottom"><i class="fas fa-trash-alt"></i></button>
                                                 </form>
 
                                             </td>
@@ -112,3 +116,5 @@
     <!-- /.content-header -->
 </div>
 @endsection
+
+

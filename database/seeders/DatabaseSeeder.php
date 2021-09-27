@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UsersTableSeeder::class);
         $this->call(RolesTableSeeder::class);
+
+        \App\Models\User::factory(50)->create();
     }
 }

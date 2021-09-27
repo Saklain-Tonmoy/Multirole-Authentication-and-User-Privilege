@@ -46,7 +46,7 @@ Route::group(['as' => 'admin', 'prefix' => 'admin', 'namespace' => 'Admin', 'mid
     Route::get('user/{id}', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('show.user');
     Route::get('user/edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('edit.user');
     Route::put('user/update/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('update.user');
-    Route::delete('user/delete/{id}', [App\Http\Controllers\Admin\UserController::class, 'delete'])->name('delete.user');
+    Route::delete('user/delete/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('delete.user');
 });
 
 Route::group(['as' => 'manager', 'prefix' => 'manager', 'namespace' => 'Manager', 'middleware' => [ManagerMiddleware::class]], function() {

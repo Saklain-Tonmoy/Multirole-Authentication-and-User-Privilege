@@ -8,6 +8,7 @@
     <title>{{config('app.name')}}</title>
 
     <link rel="stylesheet" href="{{asset('css/app.css')}}"/>
+
 </head>
 <body class="sidebar-mini">
     <div class="wrapper">
@@ -19,6 +20,9 @@
         @include('admin.layouts.footer')
     </div>
 
-    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/app.js')}}" defer></script>
+    <!-- <script src="{{asset('js/dataTables.js')}}"></script> -->
+        
+    @stack('scripts')
 </body>
 </html>

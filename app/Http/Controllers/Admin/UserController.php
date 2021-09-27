@@ -26,9 +26,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $this->validate($request, [
-            'name' => 'required|max:255',
+            'name' => 'string|required|max:255',
             'email' => 'required|email|unique:users',
-            // 'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
             'password' => 'required|min:8|confirmed',
             'password_confirmation' => 'required|min:8',
             'role_id' => 'required'
@@ -47,10 +46,55 @@ class UserController extends Controller
         }
 
         if($status) {
-            return redirect()->route('adminsoftware.users')->with('success', 'Successfully created User.');
+            return redirect()->route('adminindex.users')->with('success', 'Successfully created User.');
         }
         else {
             return back()->with('error', 'Something went wrong! Please try again.');
+        }
+    }
+
+    public function edit($id)
+    {
+        $user = User::findorfail($id);
+        $roles = Role::all();
+
+        if($user) {
+            return view('admin.pages.user-edit', compact('user', 'roles'));
+        }
+        else {
+            return back()->with('error', 'Something went wrong. Please try again.');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findorfail($id);
+
+        $this->validate($request, [
+            'name' => 'string|required|max:255',
+            'email' => 'email|required',
+            'password' => 'required|min:8|confirmed',
+            'password_confirmation' => 'required|min:8',
+            'role_id' => 'required'
+        ]);
+
+        $status = false;
+
+        $data = $request->all();
+        $data['password'] = Hash::make($request->password);
+
+        try {
+            $status = $user->update($data);
+        }
+        catch(Exception $e) {
+            return back()->with('exception', $e->getMessage());
+        }
+
+        if($status) {
+            return redirect()->route('adminindex.users')->with('success', 'User successfully update.');
+        }
+        else {
+            return back()->with('error', 'Something went wrong.');
         }
     }
 
@@ -64,7 +108,7 @@ class UserController extends Controller
                 return redirect()->route('adminindex.users')->with('success', 'Successfully deleted user.');
             }
             else {
-                return back()->with('error', 'Data not found');
+                return back()->with('error', 'Something went wrong! Please try again.');
             }
         }
         else {
