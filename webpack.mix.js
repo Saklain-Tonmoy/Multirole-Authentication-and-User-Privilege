@@ -16,23 +16,18 @@ mix.js('resources/js/app.js', 'public/js')
     .sourceMaps();
 
 
+// mix.scripts([
+//     'node_modules/datatables.net/js/jquery.dataTables.min.js'
+// ], 'public/js/dataTables.js');
+
 mix.scripts([
-    'node_modules/datatables.net/js/jquery.dataTables.min.js'
-], 'public/js/dataTables.js');
-
-// mix.scripts([
-//     'node_modules/jquery/dist/jquery.min.js'
-// ], 'public/js/jquery.js');
+    'node_modules/jquery/dist/jquery.min.js'
+], 'public/js/jquery-for-dataTables-error-solution.js');
 
 
 // mix.scripts([
-//     'node_modules//jquery/dist/jquery.min.js',
-//     'node_modules/datatables.net/js/jquery.dataTables.min.js',
-//     'node_modules/datatables.net-buttons/js/dataTables.buttons.min.js',
-//     'node_modules/datatables.net-buttons/js/buttons.html5.min.js',
-//     'node_modules/datatables.net-buttons/js/buttons.print.min.js',
-//     'node_modules/jszip/dist/js/jszip.min.js',
-//     'node_modules/jszip/dist/js/jszip.min.js',
-//     'node_modules/pdfmake/build/pdfmake.min.js',
+//     'node_modules/admin-lte/plugins/pdfmake/pdfmake.js',
+//     'node_modules/admin-lte/plugins/pdfmake/vfs_fonts.js',
+//     'node_modules/admin-lte/plugins/jszip/jszip.js',
 
 // ], 'public/js/datatables.js');

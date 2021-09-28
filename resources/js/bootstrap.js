@@ -11,12 +11,17 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
-    require('admin-lte/plugins/jquery/jquery');
-    require('admin-lte/plugins/bootstrap/js/bootstrap.bundle');
+    require('admin-lte');
     require('admin-lte/plugins/datatables/jquery.dataTables');
     require('admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4');
-    require('admin-lte/dist/js/adminlte');
-    require('admin-lte/dist/js/demo');
+    require('admin-lte/plugins/datatables-buttons/js/dataTables.buttons');
+    require('admin-lte/plugins/datatables-buttons/js/buttons.print');
+    require('admin-lte/plugins/datatables-buttons/js/buttons.html5');
+
+    require('admin-lte/plugins/pdfmake/pdfmake');
+    require('admin-lte/plugins/pdfmake/vfs_fonts');
+    require('admin-lte/plugins/jszip/jszip');
+    
 } catch (e) {}
 
 /**
